@@ -1,7 +1,6 @@
 window.DenunciasManager = {
     init: function () {
         //Verificar que exista un arreglo de denuncias, sino crearlo
-        //window.localStorage.clear();
         var denuncias = window.localStorage.getObject("denuncias");
         if (denuncias == null) {
             denuncias = [];
@@ -12,9 +11,7 @@ window.DenunciasManager = {
         return window.localStorage.getObject("denuncias");
     },
     guardarDenuncia: function (denunciaDirty) {
-        console.log("IdDenuncia:" + denunciaDirty.iddenuncialocal);
         var ix = denunciaDirty.iddenuncialocal != null ? this.obtenerIndiceDenuncia(denunciaDirty.iddenuncialocal) : -1;
-        console.log("ix:" + ix);
         var denuncias = this.obtenerDenuncias();
         if (ix == -1) {
             denunciaDirty.iddenuncialocal = Math.floor((Math.random() * 100000) + 1);
@@ -58,5 +55,5 @@ window.DenunciasManager = {
             window.localStorage.setObject("denuncias", arDenuncias);
         }
     }
-}
+};
 window.DenunciasManager.init();

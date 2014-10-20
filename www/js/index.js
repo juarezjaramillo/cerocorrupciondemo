@@ -1,64 +1,35 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 var cordovaApp = {
-    // Application Constructor
     initialize: function () {
         this.bindEvents();
     },
     // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function () {
-        cordovaApp.receivedEvent('deviceready');
+        //Obtener identificador para notificaciones push
         var notificacionesPush = window.plugins.pushNotification;
         notificacionesPush.register(
                 function (resultado) {
-                    console.log("Notificaciones Push - Success");
                     console.log(resultado);
                 },
                 function (error) {
-                    console.log("Notificaciones Push - Error");
                     console.log(error);
                 },
                 {
                     "senderID": "38852989393",
                     "ecb": "cordovaApp.onNotification"
                 });
-        // Register the event listener
+        //Si se presiona el botón Atrás, hacemos que la app cierre la última página, 
+        //y sino hay más páginas cerrar la app
         document.addEventListener("backbutton", function () {
             if (App.back() === false) {
                 navigator.app.exitApp();
             }
         }, false);
     },
-    // Update DOM on a Received Event
     receivedEvent: function (id) {
-
-        console.log('Received Event: ' + id);
+        console.log('Evento Recibido: ' + id);
     },
     getConfig: function (config) {
         var conf = window.localStorage.getObject("config");
@@ -79,65 +50,61 @@ var cordovaApp = {
     onNotification: function (e) {
         console.log("onNotification");
         console.log(e);
-
         switch (e.event) {
             case 'registered':
                 if (e.regid.length > 0) {
-                    // Your GCM push server needs to know the regID before it can push to this device
-                    // here is where you might want to send it the regID for later use.
-                    console.log("regID = " + e.regid);
+                    //console.log("regID = " + e.regid);
                     window.localStorage.setItem("pushid", e.regid);
+                    //Enviar el push id via ajax
+                    this.enviarPushId(e.regid);
                 }
                 break;
 
             case 'message':
                 NotificacionesManager.procesarNotificacion(e.payload);
-                // if this flag is set, this notification happened while we were in the foreground.
-                // you might want to play a sound to get the user's attention, throw up a dialog, etc.
                 if (e.foreground) {
-                    console.log('<li>--INLINE NOTIFICATION--</li>');
-
-                    // on Android soundname is outside the payload.
-                    // On Amazon FireOS all custom attributes are contained within payload
-                    //var soundfile = e.soundname || e.payload.sound;
-                    // if the notification contains a soundname, play it.
-                    //var my_media = new Media("/android_asset/www/" + soundfile);
-                    //my_media.play();
-                    navigator.notification.beep(1);
+                    console.log('Notificación Inline');
+                    navigator.notification.beep(1);//Reproducir Sonido
                     if (e.payload.tipo_notificacion == "cambio_estatus") {
                         App.mostrarDialogoCambioEstatus(e.payload);
+                    } else {
+                        App.mostrarNotificacionGenerica(e.payload);
                     }
                 }
-                else {  // otherwise we were launched because the user touched a notification in the notification tray.
-                    if (e.coldstart)
-                    {
-                        console.log('<li>--COLDSTART NOTIFICATION--</li>');
+                else {
+                    if (e.coldstart) {
+                        console.log('Notificación ColdStart');
+                    } else {
+                        console.log('Notificación Recibida en Background');
                     }
-                    else
-                    {
-                        console.log('<li>--BACKGROUND NOTIFICATION--</li>');
-                    }
+                    App.load('notificacion', e.payload);
                 }
-
-                console.log('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-                //Only works for GCM
-                console.log('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
-                //Only works on Amazon Fire OS
-                //$status.append('<li>MESSAGE -> TIME: ' + e.payload.timeStamp + '</li>');
-                //App.load('notificacion', e.payload);
                 break;
-
             case 'error':
-                console.log('<li>ERROR -> MSG:' + e.msg + '</li>');
+                console.log('Error:' + e.msg);
                 break;
-
             default:
-                console.log('<li>EVENT -> Unknown, an event was received and we do not know what it is</li>');
+                console.log('Desconocido');
                 break;
         }
     },
     getPushId: function () {
         return window.localStorage.getItem("pushid");
+    },
+    enviarPushId: function (pushid) {
+        $.ajax({
+            type: "POST",
+            url: window.url_enviar_configuracion,
+            data: $.extend({}, cordovaApp.getConfig(), {"userid": pushid}),
+            crossDomain: true,
+            dataType: 'json',
+            success: function (msg) {
+                console.log(msg)
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
+        });
     }
 };
 
@@ -147,19 +114,20 @@ $(function () {
     $("body").removeClass("app-android app-android-4");//En el prototipo no se hacen distinciones de dispositivo
 });
 
-App.mostrarDialogoCambioEstatus = function (notif) {
+App.mostrarNotificacion= function (notif) {
     App.dialog({
-        title: 'Cambio de Estatus',
-        text: 'Una de sus denuncias ha cambiado de estatus',
+        title: notif.titulo || 'Notificacion Recibida',
+        text: 'Se ha recibido una notificacion',
         okButton: 'Ver',
         cancelButton: 'Cancelar'
-    }, function (tryAgain) {
-        if (tryAgain) {
+    }, function (ver) {
+        if (ver) {
             App.load('notificacion', notif);
         }
     });
 };
 
+//Cargar pantalla principal
 App.load('menu');
 
 /*App.load('notificacion', {

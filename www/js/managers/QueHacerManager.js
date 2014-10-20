@@ -1,6 +1,6 @@
 window.QueHacerManager = {
     init: function () {
-        //Oficinas Hardcodeadas
+        //Datos Hardcodeadas
         this.quehacer = {
             'soborno': {
                 "titulo": "Soborno",
