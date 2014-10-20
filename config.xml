@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.rauljuarezjaramillo.CeroCorrupcionDemo" version="1.0.0">
+    <name>CeroCorrupcionDemo</name>
+    <description>
+        Prototipo para el Reto Denuncia la Corrupción
+    </description>
+    <author email="yo@rauljuarezjaramillo.com" href="http://www.rauljuarezjaramillo.com">
+        Raúl Francisco Juárez Jaramillo
+    </author>
+    <content src="index.html"/>
+    <access origin="*"/>
+</widget>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/libs/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-theme.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/libs/sweet-alert.css" />
+        <link rel="stylesheet" type="text/css" href="css/libs/app.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
+            <div class="app-page menu" data-page="menu">
+                <div class="app-topbar">
+                    <div class="app-title">Cero Corrupci&oacute;n</div>
+                    <div class="app-button right"><img src="img/ayuda.png" alt="Ayuda" /></div>
+                </div>
+                <div class="app-content">
+                    <div class="menu-item">
+                        <div class="contenido">
+                            <div class="icono">
+                                <img src="img/menu_nueva.png" class="nueva" alt="Nueva Denuncia"/>
+                            </div>
+                            <div class="descripcion">
+                                <span class="nueva">Nueva</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="contenido">
+                            <div class="icono">
+                                <img src="img/menu_mis_denuncias.png" class="mis-denuncias" alt="Nueva Denuncia"/>
+                            </div>
+                            <div class="descripcion">
+                                <span class="mis-denuncias">Mis Denuncias</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="contenido">
+                            <div class="icono">
+                                <img src="img/menu_oficinas.png" class="oficinas" alt="Oficinas"/>
+                            </div>
+                            <div class="descripcion">
+                                <span class="oficinas">Oficinas</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="contenido">
+                            <div class="icono">
+                                <img src="img/menu_sugerencias.png" class='sugerencias' alt="Sugerencias"/>
+                            </div>
+                            <div class="descripcion">
+                                <span class='sugerencias'>Sugerencias</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="contenido">
+                            <div class="icono">
+                                <img src="img/menu_configuracion.png" class='configuracion' alt="Configuracion"/>
+                            </div>
+                            <div class="descripcion">
+                                <span class='configuracion'>Configuraci&oacute;n</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="contenido">
+                            <div class="icono">
+                                <img src="img/menu_que_hacer.png" class='que-hacer' alt="Que&eacute; Hacer"/>
+                            </div>
+                            <div class="descripcion">
+                                <span class='que-hacer'>Que Hacer</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page nueva" data-page="nueva">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">
+                        <span class="capturar">Capturar <span data-text-denuncia="Denuncia" data-text-queja="Queja">Denuncia</span></span>
+                        <span class="detalle">Detalle de <span data-text-denuncia="Denuncia" data-text-queja="Queja">Denuncia</span></span>
+                    </div>
+                    <div class="app-button right enviar"><img src="img/enviar.png" alt="Ayuda" /></div>
+                </div>
+                <div class="app-content">
+                    <div class="row">
+                        <div class="form-group col-xs-12 floating-radio-form-group text-center">
+                            <div class="color-checkbox text-left">
+                                <input type="radio" value="1" id='tipo-denuncia' name="tipo" checked />
+                                <label for="tipo-denuncia"></label>
+                                <h4>Denuncia</h4>
+                            </div>
+                            <!--                                <span class='separador'></span>-->
+                            <div class="color-checkbox text-left">
+                                <input type="radio" value="2" id='tipo-queja' name="tipo" />
+                                <label for="tipo-queja"></label>
+                                <h4>Queja</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row detalle'>
+                        <div class="form-group col-xs-12 floating-label-form-group">
+                            <label for="folio">Folio Generado:</label>
+                            <input class="form-control" type="text" name="folio" id='folio' placeholder="Folio">
+                            <span class="borde"></span>
+                        </div>
+                    </div>
+                    <div class='row detalle'>
+                        <div class="form-group col-xs-12 floating-label-form-group">
+                            <label for="estatus">Estatus Actual:</label>
+                            <input class="form-control" type="text" name="estatus" id='estatus' placeholder="Estatus">
+                            <span class="borde"></span>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="form-group col-xs-12 floating-label-form-group">
+                            <label class="capturar" for="persona" data-text-denuncia='Denunciar a:' data-text-queja='Queja de:'>Denuncia a:</label>
+                            <label class="detalle" for="persona" data-text-denuncia='Se denunci&oacute; a:' data-text-queja='Se envi&oacute; la queja de:'>Se denunci&oacute; a:</label>
+                            <input class="form-control" type="text" name="persona" id='persona' placeholder="¿A qui&eacute;n vas a denunciar?" data-placeholder-denuncia='¿A qui&eacute;n vas a denunciar?' data-placeholder-queja='¿De qui&eacute;n presentar&aacute;s queja?'>
+                            <span class="borde"></span>
+                            <input type="hidden" name="idpersona" id="idpersona" value="" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-xs-12 floating-label-form-group">
+                            <label class="capturar" for="hechos">Hechos:</label>
+                            <label class="detalle" for="hechos">Los hechos fueron:</label>
+                            <textarea class="form-control" name="hechos" id='hechos' placeholder="Describa los hechos" rows='1'></textarea>
+                            <span class="borde"></span>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="form-group col-xs-12 floating-label-form-group">
+                            <label for="ubicacion">Ubicaci&oacute;n</label>
+                            <input class="form-control" type="text" name="ubicacion" id='ubicacion' placeholder="Seleccione un punto en el mapa">
+                            <a class="ubicar"><img src='img/ubicacion.png' alt='ubicar' width='24' height="24"></a>
+                            <input type='hidden' id='latitud' name='latitud' />
+                            <input type='hidden' id='longitud' name='longitud' />
+                            <span class="borde"></span>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="form-group col-xs-12 floating-radio-form-group">
+                            <div class="color-checkbox">
+                                <input type="checkbox" value="None" id='anonima' name="anonima" checked="checked" />
+                                <label for="anonima" id='labelAnonima'></label>
+                                <h4 data-text-denuncia='Denuncia An&oacute;nima' data-text-queja='Queja An&oacute;nima'>Denuncia An&oacute;nima</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='row denuncia-si-anonima'>
+                        <div class="form-group col-xs-offset-1 col-xs-11 floating-label-form-group">
+                            <label class="capturar" for="correo">Correo para notificaciones (opcional)</label>
+                            <label class="detalle" for="correo">Se enviar&aacute;n notificaciones a:</label>
+                            <input class="form-control" type="text" name="correo" id='correo' placeholder="Escriba un correo para notificaciones (opcional)">
+                            <span class="borde"></span>
+                        </div>
+                    </div>
+                    <input type='hidden' name="iddenuncia" value=''/>
+                    <div class='row denuncia-no-anonima hide'>
+                        <div class="form-group col-xs-offset-1 col-xs-11 col-sm-offset-1 col-sm-3 floating-label-form-group">
+                            <label for="nombre">Nombre</label>
+                            <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Introduce tu nombre">
+                            <span class="borde"></span>
+                        </div>
+                        <div class="form-group col-xs-offset-1 col-xs-11 col-sm-offset-0 col-sm-3 floating-label-form-group">
+                            <label for="direccion">Direcci&oacute;n</label>
+                            <input class="form-control" type="text" name="direccion" id="direccion" placeholder="tu direcci&oacute;n">
+                            <span class="borde"></span>
+                        </div>
+                        <div class="form-group col-xs-offset-1 col-xs-11 col-sm-offset-0 col-sm-2 floating-label-form-group">
+                            <label for="telefono">Tel&eacute;fono</label>
+                            <input class="form-control" type="text" name="telefono" id="telefono" placeholder="tu tel&eacute;fono">
+                            <span class="borde"></span>
+                        </div>
+                        <div class="form-group col-xs-offset-1 col-xs-11 col-sm-offset-0 col-sm-2 floating-label-form-group">
+                            <label for="correo">Correo electr&oacute;nico</label>
+                            <input class="form-control" type="text" name="correo" id="correo-no-anonima" placeholder="y correo electr&oacute;nico">
+                            <span class="borde"></span>
+                        </div>
+                    </div>
+                    <div class='form-evidencias'>
+                        <label class='capturar titulo'>Evidencias</label>
+                        <label class='detalle titulo'>Evidencias Agregadas:</label>
+                        <div class="evidencias-item-plantilla hide">
+                            <div class="contenido">
+                                <button type='button' class="icono">
+                                    <img src="" class="evidencia-thumbnail" alt="Thumbnail"/>
+                                    <img src="img/evidencia_conubicacion.png" class="evidencia-ubicacion" alt="Con ubicaci&oacute;n"/>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="evidencias-nuevo-item capturar">
+                            <div class="contenido">
+                                <button type="button" class="icono" data-id="agregar-evidencia">
+                                    <span>+</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page evidencia" data-page='evidencia'>
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Anexar Evidencia</div>
+                    <div class="app-button right ok"><img src="img/ok.png" alt="Aceptar" /></div>
+                </div>
+                <div class="app-content">
+                    <div class="opciones text-center">
+                        <button type="button" class="tomar-foto" title="Foto"><img src="img/evidencia_tomarfoto.png" alt="foto"/></button>
+                        <button type="button" class="tomar-video" title="Video"><img src="img/evidencia_tomarvideo.png" alt="video"/></button>
+                        <button type="button" class="tomar-audio" title="Audio"><img src="img/evidencia_tomaraudio.png" alt="audio"/></button>
+                        <button type="button" class="tomar-documento" title="Documento"><img src="img/evidencia_tomardocumento.png" alt="documento"/></button>
+                    </div>
+                    <div class="seleccion-opcion">
+                        <div class="flecha-arriba text-center">
+                            <img alt="Flecha Arriba" src="img/evidencia_flechaarriba.png" />
+                        </div>
+                        <div class="mensaje text-center">
+                            <label>Seleccione una de las opciones para anexar la evidencia</label>
+                        </div>
+                        <div class="vista-previa foto hide">
+                            <img src="" alt="Foto Seleccionada"/>
+                        </div>
+                        <div class="vista-previa video hide">
+
+                        </div>
+                        <div class="vista-previa audio hide">
+                            <img src="" alt=""/>
+                        </div>
+                        <div class="vista-previa documento hide">
+                            <img src="img/evidencia_documento.png" alt="Documento Thumbnail"/>
+                        </div>
+                    </div>
+                    <div class="mensaje">
+                        <label>Si lo desea tambi&eacute;n puede seleccionar una ubicaci&oacute;n para la evidencia</label>
+                    </div>
+                    <div class='row'>
+                        <div class="form-group col-xs-12 floating-label-form-group">
+                            <label for="location">Ubicaci&oacute;n</label>
+                            <input class="form-control" type="text" name="ubicacion" placeholder="Seleccione un punto en el mapa">
+                            <a class='ubicar'><img src='img/ubicacion.png'></a>
+                            <input type='hidden' id='latitud' name='latitud' />
+                            <input type='hidden' id='longitud' name='longitud' />
+                            <span class="borde"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page ubicacion" data-page="ubicacion">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Seleccione un punto</div>
+                    <div class="app-button right ok"><img src="img/ok.png" alt="Aceptar" /></div>
+                </div>
+                <div class="app-content">
+                    <div class='contenedor-mapa'>
+                        <div class='gmap'></div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page mis-denuncias" data-page="misdenuncias">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Mis Denuncias</div>
+                </div>
+                <div class="app-content">
+                    <div class="denuncia-item-plantilla hide">
+                        <div class="contenido">
+                            <div class="dropdown">
+                                <a class="lanzador-menu" data-toggle="dropdown">
+                                    <label class='puntos'><span class='punto'>&centerdot;</span><span class='punto'>&centerdot;</span><span class='punto'>&centerdot;</span></label>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="opcion-menu eliminar">Eliminar</a></li>
+                                </ul>
+                            </div>
+                            <label class='titulo'>Denuncia a Juan Perez</label>
+                            <label class='evidencias'>3 evidencias</label>
+                            <label class='fecha'>23 sep</label>
+                            <label class='estatus'>Formulario en Investigaci&oacute;n</label>
+                        </div>
+                    </div>
+                    <div class='mensaje text-center hide'>No se ha presentando ninguna denuncia o queja</div>
+                </div>
+            </div>
+            <div class="app-page oficinas" data-page="oficinas">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Oficinas</div>
+                    <div class="app-button right ruta"><img src="img/oficinas_ruta.png" alt="Calcular Ruta" /></div>
+                </div>
+                <div class="app-content">
+                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="active">
+                            <a href="#mapa" target="self" data-toggle="tab">
+                                <img src="img/oficinas_mapa.png" class="azul" alt="Mapa" />
+                                <img src="img/oficinas_mapa_gris.png" class="gris" alt="Mapa" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#listado" target="self" data-toggle="tab">
+                                <img src="img/oficinas_listado.png" class="azul" alt="Mapa" />
+                                <img src="img/oficinas_listado_gris.png" class="gris" alt="Mapa" />
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="mapa" class="tab-pane active">
+                            <div class="gmap"></div>
+                        </div>
+                        <div id="listado" class="tab-pane">
+                            <div class="oficina-item-plantilla hide">
+                                <label class='unidad'>Denuncia a Juan Perez</label>
+                                <label class='direccion'>3 evidencias</label>
+                                <label class='responsable'>Formulario en Investigaci&oacute;n</label>
+                                <span class="flecha-derecha">
+                                    <img src="img/flecha-derecha.png" alt="Seguir" />
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page detalle-oficina" data-page="detalleoficina">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Oficinas</div>
+                </div>
+                <div class="app-content">
+                    <div class="oficina">
+                        <label class="unidad">Unidad</label>
+                        <div class="oficina-dato">
+                            <label class="titulo">Direccion</label>
+                            <label class="descripcion direccion">Direccion</label>
+                        </div>
+                        <div class="oficina-dato">
+                            <label class="titulo">Responsable</label>
+                            <label class="descripcion responsable">Responsable</label>
+                        </div>
+                        <div class="oficina-dato">
+                            <label class="titulo">Tel&eacute;fonos</label>
+                            <label class="descripcion telefono"></label>
+                        </div>
+                        <div class="oficina-dato">
+                            <label class="titulo">Horario de Atenci&oacute;n</label>
+                            <label class="descripcion horario">Horario</label>
+                        </div>
+                    </div>
+                    <div class="contenedor-mapa">
+                        <div class="gmap"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page sugerencias" data-page="sugerencias">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Oficinas</div>
+                    <div class="app-button right enviar"><img src="img/enviar.png" alt="Ayuda" /></div>
+                </div>
+                <div class="app-content">
+                    <form role="form" id='form-sugerencia'>
+                        <div class="row">
+                            <div class="form-group col-xs-12 floating-label-form-group">
+                                <label for="comentarios">Comentarios:</label>
+                                <textarea class="form-control" name="descripcion" id='comentarios' placeholder="Introduzca sus comentarios" rows='4'> </textarea>
+                                <span class="borde"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-offset-1 col-xs-10">
+                                <div class="mensaje text-center">Sus comentarios nos son de mucha ayuda, con tu participaci&oacute;n nos ayudas a mejorar.</div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Enviando Sugerencia</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class='procesando'>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                                                <span class="sr-only">0% Completado</span>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        Espere un momento mientras se env&iacute;a su sugerencia
+                                    </div>
+                                    <div class="error hide">
+                                        Ocurri&oacute; un error al enviar la denuncia.<br /><br />
+                                        Verifique que est&aacute; conectado a internet e intente nuevamente.
+                                    </div>
+                                    <div class='ok hide'>
+                                        Gracias por sus comentarios
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary aceptar hide">Aceptar</button>
+                                    <button type="button" class="btn btn-primary reintentar hide">Reintentar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page configuracion" data-page="configuracion">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Configuraci&oacute;n</div>
+                </div>
+                <div class="app-content">
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                            <div class="color-checkbox text-left">
+                                <input type="checkbox" value="1" id='config-geo' name="geo" checked />
+                                <label for="config-geo"></label>
+                                <h4>Utilizar geolocalizaci&oacute;n</h4>
+                            </div>
+                            <div class="mensaje">
+                                <span class="on hide">Se utilizar&aacute; la ubicaci&oacute;n de su dispositivo para agilizar el uso de la aplicaci&oacute;n.</span>
+                                <span class="off hide">NO se utilizar&aacute; la ubicaci&oacute;n de su dispositivo.</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <div class="color-checkbox text-left">
+                                <input type="checkbox" value="1" id='config-push' name="push" />
+                                <label for="config-push"></label>
+                                <h4>Recibir Notificaciones Push</h4>
+                            </div>
+                            <div class="mensaje">
+                                <span class="on hide">Se recibir&aacute;n al instante, las notificaciones de cambio de estatus en sus denuncias.</span>
+                                <span class="off hide">Si no las activa no podr&aacute; recibir las alertas en tiempo real cuando cambie el estatus de su denuncia.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page que-hacer" data-page="quehacer">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Que Hacer</div>
+                </div>
+                <div class="app-content">
+                    <div class='listado'>
+                        <div class="que-hacer-item" data-item='soborno'>
+                            <img class='icono' src="img/que_hacer_soborno.png" alt="Soborno" />
+                            <label class='titulo'>Soborno</label>
+                            <span class="flecha-derecha">
+                                <img src="img/flecha-derecha.png" alt="Seguir" />
+                            </span>
+                        </div>
+                        <div class="que-hacer-item" data-item='extorsion'>
+                            <img class='icono' src="img/que_hacer_extorsion.png" alt="Extorsion" />
+                            <label class='titulo'>Extorsi&oacute;n</label>
+                            <span class="flecha-derecha">
+                                <img src="img/flecha-derecha.png" alt="Seguir" />
+                            </span>
+                        </div>
+                        <div class="que-hacer-item" data-item='trafico'>
+                            <img class='icono' src="img/que_hacer_trafico.png" alt="Trafico de Influencias" />
+                            <label class='titulo'>Tr&aacute;fico de Influencias</label>
+                            <span class="flecha-derecha">
+                                <img src="img/flecha-derecha.png" alt="Seguir" />
+                            </span>
+                        </div>
+                        <div class="que-hacer-item" data-item='fraude'>
+                            <img class='icono' src="img/que_hacer_fraude.png" alt="Fraude" />
+                            <label class='titulo'>Fraude</label>
+                            <span class="flecha-derecha">
+                                <img src="img/flecha-derecha.png" alt="Seguir" />
+                            </span>
+                        </div>
+                        <div class="que-hacer-item" data-item='nepotismo'>
+                            <img class='icono' src="img/que_hacer_nepotismo.png" alt="Nepotismo" />
+                            <label class='titulo'>Nepotismo</label>
+                            <span class="flecha-derecha">
+                                <img src="img/flecha-derecha.png" alt="Seguir" />
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page que-hacer-detalle" data-page="quehacerdetalle">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">T&iacute;tulo</div>
+                </div>
+                <div class="app-content">
+                    <div class='swipe'>
+                        <div class='swipe-wrap'>
+                        </div>
+                        <ol class='swipe-indicators carousel-indicators'>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page enviar-denuncia" data-page="enviardenuncia">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Enviar</div>
+                </div>
+                <div class="app-content">
+                    <div class="pagina enviar-denuncia" data-role="page" id="enviar-denuncia">
+                        <!-- Modal -->
+                        <div class="modal" tabindex="-1" role="dialog">
+                            <div class='modal-dialog'>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Enviando Informaci&oacute;n</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class='procesando'>
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                                                    <span class="sr-only">0% Completado</span>
+                                                </div>
+                                            </div>
+                                            Este proceso puede ser tardado dependiendo de la cantidad y tama&ntilde;o de las evidencias.
+                                        </div>
+                                        <div class="error hide">
+                                            Ocurri&oacute; un error al enviar la denuncia.<br /><br />
+                                            Verifique que est&aacute; conectado a internet e intente nuevamente.
+                                        </div>
+                                        <div class='ok hide'>
+                                            La denuncia se envi&oacute; correctamente<br />
+                                            Su folio es: <span class="folio text-success">XX</span><br />
+                                            Guarde este n&uacute;mero en un lugar seguro.
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary aceptar hide">Aceptar</button>
+                                        <button type="button" class="btn btn-primary reintentar hide">Reintentar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="app-page notificacion" data-page="notificacion">
+                <div class="app-topbar">
+                    <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
+                    <div class="app-title">Notificaci&oacute;n</div>
+                </div>
+                <div class="app-content">
+                    <div class="cambio-estatus">
+                        <label class="tipo">Cambio de Estatus</label>
+                        <div class="notificacion-dato denuncia">
+                            <label class="titulo">Denuncia</label>
+                            <label class="descripcion"></label>
+                        </div>
+                        <div class="notificacion-dato fecha">
+                            <label class="titulo">Fecha de Denuncia</label>
+                            <label class="descripcion"></label>
+                        </div>
+                        <div class="notificacion-dato estatus">
+                            <label class="titulo">Nuevo Estatus</label>
+                            <label class="descripcion"></label>
+                        </div>
+                        <div class="notificacion-dato fecha-estatus">
+                            <label class="titulo">Fecha del Nuevo Estatus</label>
+                            <label class="descripcion"></label>
+                        </div>
+                        <div class="notificacion-dato observaciones">
+                            <label class="titulo">Observaciones</label>
+                            <label class="descripcion"></label>
+                        </div>
+                    </div>
+                    <div class="text-center"><button class='app-button'>Ver Denuncia</button></div>
+                    <div class="contenedor-mapa">
+                        <div class="gmap"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="cordova.js"></script>
+        <script src="js/libs/jquery.js"></script>
+        <script src="js/libs/webfont.min.js"></script>
+        <script src="js/libs/fastclick.js"></script>
+        <script src="js/libs/bootstrap.min.js"></script>
+        <script src="js/libs/typeahead.bundle.min.js"></script>
+        <script src="js/libs/handlebars-v2.0.0.js"></script>
+        <script src="js/libs/swipe.js"></script>
+        <script src="js/libs/sweet-alert.min.js"></script>
+        <script src="js/libs/app.min.js"></script>
+        <script src="js/util.js"></script>
+        <script src="js/managers/DenunciasManager.js"></script>
+        <script src="js/managers/OficinasManager.js"></script>
+        <script src="js/managers/QueHacerManager.js"></script>
+        <script src="js/managers/NotificacionesManager.js"></script>
+        <script src="js/controladores/menu.js"></script>
+        <script src="js/controladores/nuevadenuncia.js"></script>
+        <script src="js/controladores/evidencia.js"></script>
+        <script src="js/controladores/ubicacion.js"></script>
+        <script src="js/controladores/enviardenuncia.js"></script>
+        <script src="js/controladores/misdenuncias.js"></script>
+        <script src="js/controladores/oficinas.js"></script>
+        <script src="js/controladores/sugerencias.js"></script>
+        <script src="js/controladores/configuracion.js"></script>
+        <script src="js/controladores/quehacer.js"></script>
+        <script src="js/controladores/notificacion.js"></script>
+        <script src="js/index.js"></script>
+        <script>
+            WebFont.load({
+                custom: {
+                    families: ['Lato']
+                }
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="css/fuentes.css" />
+        <script src="https://maps.googleapis.com/maps/api/js" type="text/javascript"></script>
+    </body>
+</html>

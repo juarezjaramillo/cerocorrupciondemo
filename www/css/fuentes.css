@@ -1,0 +1,40 @@
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 100;
+    src: local('Lato Light'), local('Lato-Light'), url('../fonts/Lato/Lato-Light.ttf')  format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 200;
+    src: local('Lato Light'), local('Lato-Light'), url('../fonts/Lato/Lato-Light.ttf')  format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Lato Light'), local('Lato-Light'), url('../fonts/Lato/Lato-Light.ttf')  format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url('../fonts/Lato/Lato-Regular.ttf')  format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Lato Bold'), local('Lato-Bold'), url('../fonts/Lato/Lato-Bold.ttf')  format('truetype');
+}
+@font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Lato Italic'), local('Lato-Italic'), url('../fonts/Lato/Lato-Italic.ttf')  format('truetype');
+}
+/*Una vez que se cargo la familia Lato, establecerla como la principal*/
+html.wf-active,html.wf-active body{
+     font-family: 'Lato',Helvetica,Verdana,Arial,sans-serif;
+}
