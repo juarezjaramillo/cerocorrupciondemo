@@ -1,10 +1,11 @@
 //Urls del backend
-window.url_servidor = "http://192.168.1.65:8080/";
-window.url_enviar_denuncia = window.url_servidor + "SubirEvidencia/Test/GuardarDenuncia";
-window.url_enviar_denuncia_evidencia = window.url_servidor + "SubirEvidencia/Test/GuardarEvidencia";
-window.url_buscar_personas = window.url_servidor + "SubirEvidencia/Test/BuscarPersonas";
-window.url_enviar_sugerencia = window.url_servidor + "SubirEvidencia/Test/GuardarSugerencia";
-window.url_enviar_configuracion = window.url_servidor + "SubirEvidencia/Test/GuardarConfiguracion";
+//window.url_servidor = "http://192.168.1.66:8888/";
+window.url_servidor = "http://cerocorrupcionmx.appspot.com/";
+window.url_enviar_denuncia = window.url_servidor + "cerocorrupcionmx/GuardarDenuncia";
+window.url_enviar_denuncia_evidencia = window.url_servidor + "cerocorrupcionmx/GuardarEvidencia";
+window.url_buscar_personas = window.url_servidor + "cerocorrupcionmx/BuscarPersonas";
+window.url_enviar_sugerencia = window.url_servidor + "cerocorrupcionmx/GuardarSugerencia";
+window.url_enviar_configuracion = window.url_servidor + "cerocorrupcionmx/GuardarConfiguracion";
 //Plantilla para una denuncia nueva
 window._plantillaDenuncia = {"iddenuncialocal": null, "estatus": "Formulario No Enviado", "tipo": "1", "anonima": "1", evidencias: []}
 //Plantilla para la configuracion inicial de la app
@@ -17,8 +18,8 @@ window.Storage.prototype.getObject = function (key) {
     var value = this.getItem(key);
     return value && JSON.parse(value);
 }
-//Para las etiquetas flotantes de las cajas de texto
 $(function () {
+    //Para las etiquetas flotantes de las cajas de texto
     $("body").on("input propertychange", ".floating-label-form-group", function (e) {
         $(this).toggleClass("floating-label-form-group-with-value", !!$(e.target).val());
     }).on("focus", ".floating-label-form-group", function () {
@@ -26,7 +27,12 @@ $(function () {
     }).on("blur", ".floating-label-form-group", function () {
         $(this).removeClass("floating-label-form-group-with-focus");
     });
+    //Disparar evento al cargar el DOM
     $("input,textarea").trigger("propertychange");
+    //Reproducir sonido del 'tap' nativo
+    $(document).on('touchend','.app-button,button,.color-checkbox,.lanzador-menu,.dropdown-menu li', function () {
+        window.plugins.deviceFeedback.acoustic();
+    })
 });
 //Para mostrar errores en la consola
 window.logError = function (error) {

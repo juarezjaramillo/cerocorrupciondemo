@@ -47,15 +47,16 @@ html, body {
 .menu .menu-item{
     width: 50%;
     display: inline-block;
-    /*margin-top: 50px;*/
+    margin-top: 15px;
 
     /*border:1px solid black;*/
     float: left;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     transition: transform 400ms ease-out,opacity 300ms ease-in-out;
     -webkit-transition: -webkit-transform 400ms ease-out,opacity 300ms ease-in-out;
     /*-webkit-transform:  scale(0);
     transform:  scale(0);*/
+    text-align: center;
 }
 
 .menu-item{
@@ -68,16 +69,21 @@ html, body {
 }*/
 .menu .menu-item .contenido{
     display: inline-block;
-    margin: 5% 0 0 10%;
-    padding: 16px 0px 90px 0px;
-    box-sizing: border-box;
+    /* margin: 5% 0 0 10%; */
+    padding: 5px;
+    /* box-sizing: border-box; */
     height: 110px;
     text-align: center;
-    width: 80%;
-    vertical-align: top;
-    border: 1px solid transparent;
-    -webkit-transition: border 200ms ease-out;
-    transition: border 200ms ease-out; 
+    /* width: 80%; */
+    /* vertical-align: top; */
+    /* border: 1px solid transparent; */
+    /* -webkit-transition: border 200ms ease-out; */
+    /* transition: border 200ms ease-out; */ 
+    background: inherit;
+    color: inherit;
+    line-height: inherit;
+    height: inherit;
+    min-width: 112px;
 }
 
 .menu .menu-item .contenido a{
@@ -309,14 +315,14 @@ audio{
 
 
 .evidencia .form-group .ubicar{
-    position: absolute;
-    bottom: 16px;
-    right: 24px;
-    z-index: 2;
-    background: #666666;
-    padding: 6px;
-    -webkit-border-radius: 6px;
-    border-radius: 6px;
+    /* position: absolute; */
+    /* bottom: 16px; */
+    /* right: 24px; */
+    /* z-index: 2; */
+    /* background: #666666; */
+    /* padding: 6px; */
+    /* -webkit-border-radius: 6px; */
+    /* border-radius: 6px; */
 }
 .evidencia .form-group .ubicar img{
     width:24px;
@@ -392,10 +398,16 @@ audio{
 }
 
 
+.mis-denuncias > .app-content .denuncia-item{
+}
 .mis-denuncias > .app-content .denuncia-item .contenido{
     background: #FFFFFF;
     margin: 12px 0;
-    padding: 18px;
+    padding: 18px; color: inherit; 
+    height: auto; 
+    text-align: left; 
+    line-height: inherit; 
+    white-space: normal;
 }
 .mis-denuncias > .app-content .denuncia-item .titulo{
     color:#0099cc;
@@ -540,15 +552,22 @@ audio{
     /* margin: 12px; */
     padding: 4px;
     border-bottom: 1px solid white;
+    text-align: left;
+    height: auto;
+    line-height: inherit;
+    background: transparent;
+    text-overflow: inherit;
+    white-space: inherit;
+    overflow: auto;
 }
 .oficinas .oficina-item .unidad{
     color:#0099cc;
     font-size: 20px;
-    display: block;
+    display: inline-block;
     font-weight: 400;
     margin-right: 9px;
-    /* word-wrap: normal; */
-    /* overflow: hidden; */
+    word-wrap: inherit;
+    overflow: auto;
     color: #ffc641;
 }
 .oficinas .oficina-item .direccion{
@@ -660,6 +679,10 @@ audio{
     padding-left: 15px;
     border-bottom: 1px solid white;
     position: relative;
+    background: transparent;
+    height: auto;
+    text-align: left;
+    color: inherit;
 }
 
 .que-hacer .que-hacer-item .icono{
@@ -762,6 +785,8 @@ audio{
     padding: 6px;
     -webkit-border-radius: 6px;
     border-radius: 6px;
+    line-height: inherit;
+    height: auto;
 }
 
  .form-group .ubicar img{
@@ -1004,4 +1029,8 @@ form .row:first-child .floating-label-form-group {
 .twitter-typeahead .tt-suggestion span.nombre{
     font-size: 15px;
     line-height: 1em;
+}
+
+.app-content .app-button.active{
+    background-color: #999 !important;
 }

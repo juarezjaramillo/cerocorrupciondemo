@@ -18,6 +18,8 @@ App.controller('misdenuncias', function (page) {
                 var $elem = $plantilla.clone().removeClass("denuncia-item-plantilla hide").addClass("denuncia-item");
                 var denuncia = denuncias[i];
                 $elem.attr("iddenuncialocal", denuncia.iddenuncialocal);
+                console.log("iddenuncialocal:",denuncia.iddenuncialocal);
+                console.log("iddenuncia:",denuncia.iddenunciaproduccion);
                 //Establecer los datos de la denuncia en la plantilla
                 var titulo = (denuncia.tipo == "1" ? "Denuncia a" : "Queja de") + " " + ((denuncia.persona != null && denuncia.persona.length > 0) ? denuncia.persona : "<Por Definir>");
                 var evidencias = denuncia.evidencias != null ? (denuncia.evidencias.length == 1 ? "1 evidencia" : denuncia.evidencias.length + " evidencias") : " 0 evidencias";

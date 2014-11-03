@@ -28,5 +28,8 @@ App.controller('menu', function (page) {
     $menu.find('.menu-item .que-hacer').on('click', function () {
         App.load("quehacer");
     });
-
+    //El tutorial no está disponible en el prototipo
+    $menu.find('.app-topbar .tutorial').on('click', function () {
+        swal({title: "No disponible", text: "El tutorial no se encuentra disponible en la versi\u00F3n prototipo de esta aplicaci\u00F3n debido a que se entreg\u00F3 un video y manual de uso como parte de los requisitos", type: "info", confirmButtonText: "Aceptar"});
+    });
 });

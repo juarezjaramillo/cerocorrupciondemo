@@ -17,7 +17,7 @@ var cordovaApp = {
                     console.log(error);
                 },
                 {
-                    "senderID": "38852989393",
+                    "senderID": "417549703680",
                     "ecb": "cordovaApp.onNotification"
                 });
         //Si se presiona el botón Atrás, hacemos que la app cierre la última página, 
@@ -65,11 +65,12 @@ var cordovaApp = {
                 if (e.foreground) {
                     console.log('Notificación Inline');
                     navigator.notification.beep(1);//Reproducir Sonido
-                    if (e.payload.tipo_notificacion == "cambio_estatus") {
+                    App.mostrarNotificacion(e.payload);
+                    /*if (e.payload.tipo_notificacion == "cambio_estatus") {
                         App.mostrarDialogoCambioEstatus(e.payload);
                     } else {
-                        App.mostrarNotificacionGenerica(e.payload);
-                    }
+                        App.mostrarNotificacion(e.payload);
+                    }*/
                 }
                 else {
                     if (e.coldstart) {

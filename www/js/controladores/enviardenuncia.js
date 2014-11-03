@@ -15,6 +15,7 @@ App.controller('enviardenuncia', function (page, denuncia) {
     //La denuncia a enviar
     var denTemp = $.extend({}, denuncia);
     denTemp.evidencias = null;//Las evidencias se procesan diferente, se dejan en null por ahora
+    console.log(denTemp);
     $.ajax({
         type: "POST",
         url: window.url_enviar_denuncia,

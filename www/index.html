@@ -4,7 +4,8 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+<!--        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />-->
+        <meta name="viewport" content="width=device-width; height=device-height; initial-scale=1; maximum-scale=1; minimum-scale=1; user-scalable=no" />
         <link rel="stylesheet" type="text/css" href="css/libs/bootstrap.min.css" />
         <link rel="stylesheet" type="text/css" href="css/libs/bootstrap-theme.min.css" />
         <link rel="stylesheet" type="text/css" href="css/libs/sweet-alert.css" />
@@ -17,11 +18,11 @@
             <div class="app-page menu" data-page="menu">
                 <div class="app-topbar">
                     <div class="app-title">Cero Corrupci&oacute;n</div>
-                    <div class="app-button right"><img src="img/ayuda.png" alt="Ayuda" /></div>
+                    <div class="app-button right tutorial"><img src="img/ayuda.png" alt="Ayuda" /></div>
                 </div>
                 <div class="app-content">
                     <div class="menu-item">
-                        <div class="contenido">
+                        <div class="contenido app-button">
                             <div class="icono">
                                 <img src="img/menu_nueva.png" class="nueva" alt="Nueva Denuncia"/>
                             </div>
@@ -31,7 +32,7 @@
                         </div>
                     </div>
                     <div class="menu-item">
-                        <div class="contenido">
+                        <div class="contenido app-button">
                             <div class="icono">
                                 <img src="img/menu_mis_denuncias.png" class="mis-denuncias" alt="Nueva Denuncia"/>
                             </div>
@@ -41,7 +42,7 @@
                         </div>
                     </div>
                     <div class="menu-item">
-                        <div class="contenido">
+                        <div class="contenido app-button">
                             <div class="icono">
                                 <img src="img/menu_oficinas.png" class="oficinas" alt="Oficinas"/>
                             </div>
@@ -51,7 +52,7 @@
                         </div>
                     </div>
                     <div class="menu-item">
-                        <div class="contenido">
+                        <div class="contenido app-button">
                             <div class="icono">
                                 <img src="img/menu_sugerencias.png" class='sugerencias' alt="Sugerencias"/>
                             </div>
@@ -61,7 +62,7 @@
                         </div>
                     </div>
                     <div class="menu-item">
-                        <div class="contenido">
+                        <div class="contenido app-button">
                             <div class="icono">
                                 <img src="img/menu_configuracion.png" class='configuracion' alt="Configuracion"/>
                             </div>
@@ -71,7 +72,7 @@
                         </div>
                     </div>
                     <div class="menu-item">
-                        <div class="contenido">
+                        <div class="contenido app-button">
                             <div class="icono">
                                 <img src="img/menu_que_hacer.png" class='que-hacer' alt="Que&eacute; Hacer"/>
                             </div>
@@ -142,7 +143,7 @@
                         <div class="form-group col-xs-12 floating-label-form-group">
                             <label for="ubicacion">Ubicaci&oacute;n</label>
                             <input class="form-control" type="text" name="ubicacion" id='ubicacion' placeholder="Seleccione un punto en el mapa">
-                            <a class="ubicar"><img src='img/ubicacion.png' alt='ubicar' width='24' height="24"></a>
+                            <a class="ubicar app-button"><img src='img/ubicacion.png' alt='ubicar' width='24' height="24"></a>
                             <input type='hidden' id='latitud' name='latitud' />
                             <input type='hidden' id='longitud' name='longitud' />
                             <span class="borde"></span>
@@ -217,10 +218,10 @@
                 </div>
                 <div class="app-content">
                     <div class="opciones text-center">
-                        <button type="button" class="tomar-foto" title="Foto"><img src="img/evidencia_tomarfoto.png" alt="foto"/></button>
-                        <button type="button" class="tomar-video" title="Video"><img src="img/evidencia_tomarvideo.png" alt="video"/></button>
-                        <button type="button" class="tomar-audio" title="Audio"><img src="img/evidencia_tomaraudio.png" alt="audio"/></button>
-                        <button type="button" class="tomar-documento" title="Documento"><img src="img/evidencia_tomardocumento.png" alt="documento"/></button>
+                        <button type="button" class="tomar-foto app-button" title="Foto"><img src="img/evidencia_tomarfoto.png" alt="foto"/></button>
+                        <button type="button" class="tomar-video  app-button" title="Video"><img src="img/evidencia_tomarvideo.png" alt="video"/></button>
+                        <button type="button" class="tomar-audio  app-button" title="Audio"><img src="img/evidencia_tomaraudio.png" alt="audio"/></button>
+                        <button type="button" class="tomar-documento  app-button" title="Documento"><img src="img/evidencia_tomardocumento.png" alt="documento"/></button>
                     </div>
                     <div class="seleccion-opcion">
                         <div class="flecha-arriba text-center">
@@ -249,7 +250,7 @@
                         <div class="form-group col-xs-12 floating-label-form-group">
                             <label for="location">Ubicaci&oacute;n</label>
                             <input class="form-control" type="text" name="ubicacion" placeholder="Seleccione un punto en el mapa">
-                            <a class='ubicar'><img src='img/ubicacion.png'></a>
+                            <a class='ubicar  app-button'><img src='img/ubicacion.png'></a>
                             <input type='hidden' id='latitud' name='latitud' />
                             <input type='hidden' id='longitud' name='longitud' />
                             <span class="borde"></span>
@@ -276,7 +277,7 @@
                 </div>
                 <div class="app-content">
                     <div class="denuncia-item-plantilla hide">
-                        <div class="contenido">
+                        <div class="contenido app-button">
                             <div class="dropdown">
                                 <a class="lanzador-menu" data-toggle="dropdown">
                                     <label class='puntos'><span class='punto'>&centerdot;</span><span class='punto'>&centerdot;</span><span class='punto'>&centerdot;</span></label>
@@ -321,7 +322,7 @@
                             <div class="gmap"></div>
                         </div>
                         <div id="listado" class="tab-pane">
-                            <div class="oficina-item-plantilla hide">
+                            <div class="oficina-item-plantilla hide app-button">
                                 <label class='unidad'>Denuncia a Juan Perez</label>
                                 <label class='direccion'>3 evidencias</label>
                                 <label class='responsable'>Formulario en Investigaci&oacute;n</label>
@@ -366,7 +367,7 @@
             <div class="app-page sugerencias" data-page="sugerencias">
                 <div class="app-topbar">
                     <div class="app-button" data-back><img src="img/atras.png" alt="Atr&aacute;s" /></div>
-                    <div class="app-title">Oficinas</div>
+                    <div class="app-title">Sugerencias</div>
                     <div class="app-button right enviar"><img src="img/enviar.png" alt="Ayuda" /></div>
                 </div>
                 <div class="app-content">
@@ -456,35 +457,35 @@
                 </div>
                 <div class="app-content">
                     <div class='listado'>
-                        <div class="que-hacer-item" data-item='soborno'>
+                        <div class="que-hacer-item app-button" data-item='soborno'>
                             <img class='icono' src="img/que_hacer_soborno.png" alt="Soborno" />
                             <label class='titulo'>Soborno</label>
                             <span class="flecha-derecha">
                                 <img src="img/flecha-derecha.png" alt="Seguir" />
                             </span>
                         </div>
-                        <div class="que-hacer-item" data-item='extorsion'>
+                        <div class="que-hacer-item app-button" data-item='extorsion'>
                             <img class='icono' src="img/que_hacer_extorsion.png" alt="Extorsion" />
                             <label class='titulo'>Extorsi&oacute;n</label>
                             <span class="flecha-derecha">
                                 <img src="img/flecha-derecha.png" alt="Seguir" />
                             </span>
                         </div>
-                        <div class="que-hacer-item" data-item='trafico'>
+                        <div class="que-hacer-item app-button" data-item='trafico'>
                             <img class='icono' src="img/que_hacer_trafico.png" alt="Trafico de Influencias" />
                             <label class='titulo'>Tr&aacute;fico de Influencias</label>
                             <span class="flecha-derecha">
                                 <img src="img/flecha-derecha.png" alt="Seguir" />
                             </span>
                         </div>
-                        <div class="que-hacer-item" data-item='fraude'>
+                        <div class="que-hacer-item app-button" data-item='fraude'>
                             <img class='icono' src="img/que_hacer_fraude.png" alt="Fraude" />
                             <label class='titulo'>Fraude</label>
                             <span class="flecha-derecha">
                                 <img src="img/flecha-derecha.png" alt="Seguir" />
                             </span>
                         </div>
-                        <div class="que-hacer-item" data-item='nepotismo'>
+                        <div class="que-hacer-item app-button" data-item='nepotismo'>
                             <img class='icono' src="img/que_hacer_nepotismo.png" alt="Nepotismo" />
                             <label class='titulo'>Nepotismo</label>
                             <span class="flecha-derecha">
@@ -584,15 +585,15 @@
                     <div class="notificacion-generica hide">
                         <label class="tipo">Notificaci&oacute;n Recibida</label>
                         <div class="notificacion-dato titulo">
-                            <label class="titulo">Denuncia</label>
+                            <label class="titulo">Título</label>
                             <label class="descripcion"></label>
                         </div>
                         <div class="notificacion-dato descripcion-corta">
-                            <label class="titulo">Fecha de Denuncia</label>
+                            <label class="titulo">Descripción</label>
                             <label class="descripcion"></label>
                         </div>
                         <div class="notificacion-dato descripcion-larga">
-                            <label class="titulo">Nuevo Estatus</label>
+                            <label class="titulo"></label>
                             <label class="descripcion"></label>
                         </div>
                     </div>

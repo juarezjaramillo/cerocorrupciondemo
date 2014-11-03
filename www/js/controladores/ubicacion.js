@@ -29,7 +29,7 @@ App.controller('ubicacion', function (page) {
             }
         }, window.logError);
     }
-        //Si no se tiene activa la geolocalización, mostrar mensaje para cambiarlo
+    //Si no se tiene activa la geolocalización, mostrar mensaje para cambiarlo
     if (cordovaApp.getConfig("geo") == 0) {
         //Esperar un segundo para mostrar el mensaje
         setTimeout(function () {
@@ -61,7 +61,7 @@ App.controller('ubicacion', function (page) {
     $paginaSeleccionarUbicacion.find(".ok").click(function () {
         if (ubicacion) {//Si hay ubicacion, regresar la ubicacion a la pantalla que nos invocó
             that.reply({latitud: ubicacion.lat(), longitud: ubicacion.lng()});
-        }else{//Si no, mostrar mensaje
+        } else {//Si no, mostrar mensaje
             App.dialog({
                 title: 'No ha seleccionado la ubicacion',
                 okButton: 'Aceptar',
@@ -70,4 +70,13 @@ App.controller('ubicacion', function (page) {
             });
         }
     });
+
+    //Esperarnos unos milisegundos para ajustar el mapa al contenedor y volver a establecer el centro
+    //previniendo errores
+    setTimeout(function () {
+        google.maps.event.trigger(map, 'resize');
+        if (ubicacion != null) {
+            map.setCenter(ubicacion);
+        }
+    }, 200);
 });

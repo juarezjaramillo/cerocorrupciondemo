@@ -21,7 +21,7 @@ App.controller('configuracion', function (page) {
     //Al hacer click en el titulo del checkbox, cambiar el estatus del mismo
     $paginaConfiguracion.find(".color-checkbox h4").click(function (evt) {
         $(this).parent().find("input[type=checkbox]").click();
-        enviarConfiguracion();
+        //enviarConfiguracion();
     });
     //La configuracion de la app
     var config = cordovaApp.getConfig();
