@@ -19,9 +19,17 @@ Se utilizaron diversas librerías para generar este prototipo, el crédito de la
 
 Íconos por [Icons8](http://icons8.com/)
 
+Manuales de Usuario
+========================
+Vea el [Manual de usuario de la App](https://docs.google.com/document/d/1e-3QVeCstDynblnpjaGbYpskzRT-GPKagbAzndlp4Pk/edit?usp=sharing)
+
 Notas sobre el prototipo
 ====================
 * El prototipo fue creado para la plataforma Android y puede utilizarse sin problema en cualquier dispositivo con versión de Android 2.3.3 o superior (API 10). Las pruebas se realizaron en dispositivos Android con versión mayor a 4.0
 * El prototipo fue creado con interfaz de usuario optimizada para teléfonos inteligentes aunque puede utilizarse sin problema en tablets.  
 * Debido a que se entrega un video y un manual de uso con este prototipo, el apartado 'Tutorial' no fue agregado pues se consideró redundante.  
 * El prototipo cuenta con información directamente integrada en el código (hardcoding) para los apartados 'Oficinas' y 'Que Hacer', por lo que puede no reflejar información real y/o actual. Ésto cambiará en la versión final con un mejor manejo de la información y/o actualización de la misma.  
+
+Notas sobre el Portal del Administrador de Denuncias
+=========================
+* El portal está publicado en Google App Engine, los costos que se deriven de ello durante la etapa de prototipos y, en caso de resultar ganadores, durante el desarrollo y pruebas, los cubrirá el equipo participante. A partir de la entrega del producto y transferencia de tecnología a la dependencia, ésta deberá cubrir estos gastos para manter la aplicación funcionando.
