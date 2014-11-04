@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.appengine.api.utils.SystemProperty;
+import com.rauljuarezjaramillo.cerocorrupcion.util.Util;
 
 /**
  * Clase ligera para el acceso a Base de Datos CCMX
@@ -61,7 +62,12 @@ public class BD {
 		}
 
 		try {
-			Connection conn = DriverManager.getConnection(url);
+			Connection conn = null;
+			if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
+				conn = DriverManager.getConnection(url);
+			} else {
+				conn = DriverManager.getConnection(url, "root", "qw1as2zx3");
+			}
 			c = conn;
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -623,6 +629,67 @@ public class BD {
 			Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, e);
 		}
 		return null;
+	}
+	
+	public int guardarSeguimiento(String idDenuncia,String idEstatus, String observaciones, String userId) {
+		int id = -1;
+		try {
+			PreparedStatement stmt = c.prepareStatement("INSERT INTO DENUNCIASEGUIMIENTO(IDDENUNCIA,IDESTATUS, FECHAESTATUS, OBSERVACIONES, USUARIOCREACION, FECHACREACION) " + " VALUES(?, ?, ?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, Util.intOCero(idDenuncia));
+			stmt.setInt(2, Util.intOCero(idEstatus));
+			stmt.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+			stmt.setString(4,observaciones);
+			stmt.setString(5, userId);
+			stmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
+			stmt.executeUpdate();
+			ResultSet resultSet = stmt.getGeneratedKeys();
+			while (resultSet.next()) {
+				id = resultSet.getInt(1);
+			}
+			resultSet.close();
+			stmt.close();
+		} catch (SQLException ex) {
+			Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return id;
+	}
+	
+	public boolean actualizarEstatusDenuncia(int idDenuncia, int idEstatus, Date fechaEstatus) {
+		boolean b = false;
+		try {
+			PreparedStatement stmt = c.prepareStatement("UPDATE DENUNCIA SET IDESTATUS=?, FECHAESTATUS=? WHERE IDDENUNCIA=?");
+			stmt.setInt(1, idEstatus);
+			stmt.setTimestamp(2, new Timestamp(fechaEstatus.getTime()));
+			stmt.setInt(3, idDenuncia);
+			stmt.executeUpdate();
+			stmt.close();
+			b = true;
+		} catch (SQLException ex) {
+			Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return b;
+	}
+	
+	public boolean notificacionesActivas(String idDispositivo){
+		boolean n = true;
+
+		try {
+			PreparedStatement stmt = c.prepareStatement(
+					"SELECT NOTIFICACIONESPUSH FROM CONFIG WHERE USUARIOCREACION=?", Statement.KEEP_CURRENT_RESULT);
+			stmt.setString(1, idDispositivo);
+			
+			ResultSet resultSet = stmt.executeQuery();
+			while (resultSet.next()) {
+				n = resultSet.getInt("NOTIFICACIONESPUSH") == 1;
+			}
+			resultSet.close();
+			stmt.close();
+		} catch (Exception e) {
+			Logger.getLogger(BD.class.getName()).log(Level.SEVERE, null, e);
+		}
+		
+		return n;
 	}
 	
 	/************************************************************************************************************************************************************/

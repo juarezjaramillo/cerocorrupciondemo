@@ -1,4 +1,5 @@
 <%@page import="com.rauljuarezjaramillo.cerocorrupcion.persistencia.BD"%>
+<%@page import="java.text.DateFormat"%>
 <%@ page contentType="text/html; charset=ISO-8859-1" language="java" import="java.util.*" errorPage=""%>
 <html>
 <%
@@ -9,13 +10,16 @@
 	Map<String, Object> den =  bd.getDenuncia(Integer.parseInt(idDenuncia));
 	List<Map<String,Object>> archivos=bd.getArchivos((Integer)den.get("IDDENUNCIA"));
 	bd.cerrar();
+	
+	Date fechaEstatus = (Date)den.get("FECHAESTATUS");
+	DateFormat dateFormat= DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.SHORT,new Locale("es","MX"));
 %>
 		<h3><%=((Integer)den.get("TIPODENUNCIA")).intValue()==1 ? "QUEJA":"DENUNCIA" %><small>&nbsp;&nbsp;<%=den.get("FOLIO")%></small></h3>
 		<hr/>
 		<div class='well'>
 			<dl class="dl-horizontal">
 			  <dt>Estatus</dt>
-			  <dd><%=den.get("ESTATUS")%> (<%=den.get("FECHAESTATUS")%>)</dd>
+			  <dd><%=den.get("ESTATUS")%> (<%=dateFormat.format(fechaEstatus)%>)</dd>
 			  <dt>Funcionario</dt>
 			  <dd><%=den.get("PERSONA") %></dd>
 			  <dt>Hechos</dt>

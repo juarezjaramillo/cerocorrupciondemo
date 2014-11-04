@@ -7,7 +7,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/login.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="js/login.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
  
 <title>#CeroCorrupciónMX</title> 

@@ -1,7 +1,7 @@
 <%@page import="com.rauljuarezjaramillo.cerocorrupcion.util.UtilHTML"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%
+<% 
 if (session.getAttribute("IDUSUARIO") == null) {
     response.sendRedirect("/index.jsp?mje=No Existe Sesion Activa");
 }
@@ -71,5 +71,7 @@ if (session.getAttribute("IDUSUARIO") == null) {
 		  </div>
 		</div>
     </div>
+    <input type='hidden' id='ok' name='ok' value='<%=request.getParameter("ok")!=null ? request.getParameter("ok") : ""%>'/>
+    <input type='hidden' id='error' name='error' value='<%=request.getParameter("error")!=null ? request.getParameter("error") : ""%>'/>
 </body>
 </html>
