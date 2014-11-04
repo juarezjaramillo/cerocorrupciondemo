@@ -4,24 +4,23 @@ import static com.rauljuarezjaramillo.cerocorrupcion.util.Util.doubleOCero;
 import static com.rauljuarezjaramillo.cerocorrupcion.util.Util.intOCero;
 
 import java.io.IOException;
-import java.net.URLConnection;
 import java.nio.ByteBuffer;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.activation.MimeType;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
-import javax.mail.internet.MimeUtility;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.mortbay.jetty.MimeTypes;
 
 import com.google.android.gcm.server.Message;
 import com.google.android.gcm.server.Result;
@@ -36,13 +35,14 @@ import com.google.appengine.tools.cloudstorage.GcsOutputChannel;
 import com.google.appengine.tools.cloudstorage.GcsService;
 import com.google.appengine.tools.cloudstorage.GcsServiceFactory;
 import com.google.appengine.tools.cloudstorage.RetryParams;
-import com.google.common.net.MediaType;
 import com.rauljuarezjaramillo.cerocorrupcion.persistencia.BD;
 import com.rauljuarezjaramillo.cerocorrupcion.seguridad.Encrypter;
 import com.rauljuarezjaramillo.cerocorrupcion.seguridad.Encrypter.Identificador;
+import com.rauljuarezjaramillo.cerocorrupcion.util.MimeUtils;
 import com.rauljuarezjaramillo.cerocorrupcion.util.QR;
 import com.rauljuarezjaramillo.cerocorrupcion.util.ServletGeneral;
 import com.rauljuarezjaramillo.cerocorrupcion.util.notificaciones.Mailer;
+import com.rauljuarezjaramillo.cerocorrupcion.util.notificaciones.Push;
 
 @SuppressWarnings("serial")
 public class CeroCorrupcionMXServlet extends ServletGeneral {
@@ -207,6 +207,31 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}else if(pathInfo.equals("CambiarEstatus")){
+				BD bd=new BD();
+				bd.abrir();
+				Map<String,Object> denuncia=bd.getDenuncia(intOCero(params.get("iddenuncia")));
+				bd.cerrar();
+				Map<String,String> datos=new HashMap<String,String>();
+				datos.put("tipo_notificacion","cambio_estatus");
+				datos.put("titulo","Su denuncia ha cambiado de estatus");
+				datos.put("message","Su denuncia ha cambiado de estatus");
+				datos.put("title","Notificacion de Cambio de Estatus");
+				datos.put("iddenuncia", String.valueOf(denuncia.get("IDDENUNCIA")));
+				datos.put("iddenuncialocal", String.valueOf(denuncia.get("IDDENUNCIALOCAL")));
+				datos.put("tipo",intOCero(denuncia.get("TIPODENUNCIA"))== 1 ? "DENUNCIA":"QUEJA");
+				datos.put("nombrepersona", String.valueOf(denuncia.get("PERSONA")));
+				datos.put("estatus", String.valueOf(denuncia.get("ESTATUS")));
+				datos.put("observaciones", String.valueOf(params.get("OBSERVACIONES")));
+				DateFormat dateFormat= DateFormat.getDateTimeInstance(
+			            DateFormat.LONG, DateFormat.SHORT,new Locale("es","MX"));
+				Date fechaEstatus=(Date)params.get("FECHAESTATUS");
+				fechaEstatus=fechaEstatus==null ? new Date():fechaEstatus;
+				datos.put("fechaestatus", dateFormat.format(fechaEstatus));
+				Date fechaDenuncia=(Date)params.get("FECHACREACION");
+				fechaDenuncia=fechaDenuncia==null ? new Date():fechaDenuncia;
+				datos.put("fechadenuncia", dateFormat.format(fechaDenuncia));
+				Push.enviarNotificacion(datos, "APA91bEM8Bm34UUd7MolRGMl2Kc-0N57kNGxxuFoIHFFcGQKCm7dcmcuVdUDGyCqPwPNEPXduQWKnEDnd7roF5xaZ0e4dlVrEPMQbR32eWQQDSPIg5rtYHgTxPWwdYC__ghzmstGVe6vkPUJsL-p15qgPekPJDzgunbbUDl5Iqx-uG8XhVsQXDZEelGJejj5Nb-G9nRirR4q");
 			} else if (pathInfo.equals("PruebaPush")) {
 				Sender sender = new Sender("AIzaSyCHs6xT-8Yik5DUxT79cWkLilAnsuDf_Aw");
 
@@ -280,8 +305,6 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 				response.getWriter().print(jsonObject.toString());
 				System.out.println("jsonObject = " + jsonObject);
 			} else if (pathInfo.equals("DescargarEvidencia")) {
-				
-
 				BD bd = new BD();
 				bd.abrir();
 				Map<String, Object> archivo = bd.getArchivo(intOCero(params.get("i")));
@@ -291,8 +314,8 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 					byte[] bytes = readFromFile(filename);
 					String mimeType = (String) archivo.get("MIMETYPE");
 					String nombreArchivo = (String) archivo.get("NOMBRE");
-					
-					response.setHeader("Content-Disposition", "attachment;filename="+nombreArchivo);
+					String extension= mimeType!=null ? MimeUtils.guessExtensionFromMimeType(mimeType):null;
+					response.setHeader("Content-Disposition", "attachment;filename="+nombreArchivo+(extension!=null ? "."+extension:""));
 					response.getOutputStream().write(bytes);
 				}
 			}

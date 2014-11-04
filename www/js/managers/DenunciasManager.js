@@ -43,7 +43,8 @@ window.DenunciasManager = {
 
     },
     crearDenunciaVacia: function () {
-        var den = $.extend({}, window._plantillaDenuncia);
+        //var den = $.extend({}, window._plantillaDenuncia);
+        var den={"iddenuncialocal": null, "estatus": "Formulario No Enviado", "tipo": "1", "anonima": "1", evidencias: []};
         den.fechacreacion = new Date().getTime();
         return den;
     },

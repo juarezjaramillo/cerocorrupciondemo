@@ -1,7 +1,7 @@
 //Controlador para la pantalla 'Nueva'
 App.controller('nueva', function (page, denuncia) {
     var $paginaCaptura = $(page);
-
+    console.log(denuncia);
     //Cargar las evidencias de la denuncia
     function cargarEvidencias() {
         //Limpiar evidencias

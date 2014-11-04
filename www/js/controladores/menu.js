@@ -6,6 +6,8 @@ App.controller('menu', function (page) {
     $menu.find('.menu-item .nueva').on('click', function () {
         //Crear denuncia vacia
         var denuncia = DenunciasManager.crearDenunciaVacia();
+        console.log("denuncia en menu");
+        console.log(denuncia);
         App.load("nueva", denuncia);
     });
     //El menu 'misdenuncias' lanza la pantalla correspondiente
