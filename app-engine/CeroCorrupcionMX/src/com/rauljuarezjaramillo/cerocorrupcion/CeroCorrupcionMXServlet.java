@@ -46,7 +46,13 @@ import com.rauljuarezjaramillo.cerocorrupcion.util.notificaciones.Push;
 
 @SuppressWarnings("serial")
 public class CeroCorrupcionMXServlet extends ServletGeneral {
+	/**
+	 * Servicio Google Cloud Storage
+	 */
 	private final GcsService gcsService = GcsServiceFactory.createGcsService(RetryParams.getDefaultInstance());
+	/**
+	 * Nombre del bucket para GCS
+	 */
 	private static final String BUCKET_NAME = "cerocorrupcionmx.appspot.com";
 
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, JSONException {
@@ -63,6 +69,7 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 				if (params.get("q") != null) {
 					BD bd = new BD();
 					bd.abrir();
+					//Se buscan las personas en la BD
 					List<Map<String, String>> listaResultados = bd.buscarPersonas(((String) params.get("q")).toUpperCase());
 					bd.cerrar();
 					JSONArray jsonArray = new JSONArray(listaResultados);
@@ -76,10 +83,11 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 				List<Map<String, Object>> archivos = null;
 				BD bd = new BD();
 				bd.abrir();
+				//Se inserta la denuncia en BD, se devuelve el id del registro
 				int idDenunciaGenerado = bd.insertarDenuncia(intOCero((String) params.get("tipo")), 2/* Estatus Inicial */, "X",
 						intOCero((String) params.get("idpersona")), (String) params.get("persona"), (String) params.get("hechos"),
 						(String) params.get("ubicacion"), doubleOCero((String) params.get("latitud")), doubleOCero((String) params.get("longitud")),
-						intOCero((String) params.get("anonima")) == 0 ? 2 : 1, (String) params.get("nombre"), (String) params.get("direccion"),
+						intOCero((String) params.get("anonima")) == 2 ? 2 : 1, (String) params.get("nombre"), (String) params.get("direccion"),
 						(String) params.get("telefono"), (String) params.get("correo"), intOCero((String) params.get("iddenuncialocal")),
 						(String) params.get("userId"));
 				boolean b = idDenunciaGenerado != -1;
@@ -91,8 +99,9 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 					enc.setUp(fullPath);
 					String encriptado = enc.encrypt(new Identificador(idDenunciaGenerado));
 					System.out.println(encriptado);
-					bd.actualizarFolioDenuncia(idDenunciaGenerado, encriptado);
 					// Actualizar denuncia
+					bd.actualizarFolioDenuncia(idDenunciaGenerado, encriptado);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -103,8 +112,7 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 				jsonObject.put("estatus", b ? "OK" : "ERROR");
 				if (b) {
 					// String correo = (String) params.get("correo");
-					String asunto = "Denuncia o Queja recibida";
-					String cuerpo = "Se ha recibido la denuncia. Estos son los datos: <br />";
+					
 					Map<String, Object> denuncia = bd.getDenuncia(idDenunciaGenerado);
 
 					// Datos de salida
@@ -112,32 +120,10 @@ public class CeroCorrupcionMXServlet extends ServletGeneral {
 					jsonObject.put("idestatus", denuncia.get("IDESTATUS") != null ? denuncia.get("IDESTATUS").toString() : "2");
 					jsonObject.put("estatus_descripcion", (String) denuncia.get("ESTATUS"));
 					jsonObject.put("folio", (String) denuncia.get("FOLIO"));
+					
+					String asunto = "Denuncia o Queja recibida";
+					String cuerpo = "Se ha recibido correctamente su denuncia. Su folio es: "+(String)denuncia.get("FOLIO")+". Conserve este número en un lugar seguro. ";
 
-					archivos = bd.getArchivos(intOCero((String) params.get("iddenuncia")));
-
-					for (Map.Entry<String, Object> elem : denuncia.entrySet()) {
-						cuerpo = cuerpo.concat("<strong>").concat("ID".equals(elem.getKey()) ? "FOLIO" : (String) elem.getKey())
-								.concat(":</strong> ");
-						if (elem.getValue() != null) {
-							if ("TIPO".equals(elem.getKey())) {
-								if (new Integer(1).equals(elem.getValue()))
-									cuerpo = cuerpo.concat("Denuncia");
-								else
-									cuerpo = cuerpo.concat("Queja");
-							} else if ("ANONIMA".equals(elem.getKey())) {
-								if (new Integer(1).equals(elem.getValue()))
-									cuerpo = cuerpo.concat("Si");
-								else
-									cuerpo = cuerpo.concat("No");
-							} else {
-								cuerpo = cuerpo.concat(elem.getValue().toString());
-							}
-						}
-
-						cuerpo = cuerpo.concat("<br />");
-					}
-					cuerpo = cuerpo.concat("<br /><strong>" + (archivos != null ? archivos.size() : 0)
-							+ " Evidencia(s) </strong>(No incluidas en este correo)");
 					System.out.println("cuerpo = " + cuerpo);
 					jsonObject.put("estatus", "OK");
 					if ((denuncia.get("CORREO") != null) && (denuncia.get("CORREO").toString().trim().length() > 0)) {
