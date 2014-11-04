@@ -39,4 +39,4 @@ Sobre la App
 * El prototipo cuenta con información directamente integrada en el código (hardcoding) para los apartados 'Oficinas' y 'Que Hacer', por lo que puede no reflejar información real y/o actual. Ésto cambiará en la versión final con un mejor manejo de la información y/o actualización de la misma.  
 
 Sobre el Portal del Administrador de Denuncias
-* El portal está publicado en Google App Engine, los costos que se deriven de ello durante la etapa de prototipos y, en caso de resultar ganadores, durante el desarrollo y pruebas, los cubrirá el equipo participante. A partir de la entrega del producto y transferencia de tecnología a la dependencia, ésta deberá cubrir estos gastos para manter la aplicación funcionando.
+* El portal está publicado en Google App Engine, los costos que se deriven de ello durante la etapa de prototipos y, en caso de resultar ganadores, durante el desarrollo y pruebas, los cubrirá el equipo participante. A partir de la entrega del producto y transferencia de tecnología a la dependencia, ésta deberá cubrir estos gastos para mantener la aplicación funcionando.
