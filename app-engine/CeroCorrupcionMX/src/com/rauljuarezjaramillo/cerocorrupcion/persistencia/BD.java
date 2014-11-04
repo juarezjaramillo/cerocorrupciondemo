@@ -61,8 +61,7 @@ public class BD {
 		}
 
 		try {
-			Connection conn = DriverManager.getConnection(url, "root", "qw1as2zx3");
-			//Connection conn = DriverManager.getConnection(url);
+			Connection conn = DriverManager.getConnection(url);
 			c = conn;
 		} catch (Exception ex) {
 			ex.printStackTrace();
