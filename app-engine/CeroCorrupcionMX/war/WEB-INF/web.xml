@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>CeroCorrupcionMX</servlet-name>
+		<servlet-class>com.rauljuarezjaramillo.cerocorrupcion.CeroCorrupcionMXServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CeroCorrupcionMX</servlet-name>
+		<url-pattern>/cerocorrupcionmx</url-pattern>
+		<url-pattern>/cerocorrupcionmx/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>SrvUtil</servlet-name>
+		<servlet-class>com.rauljuarezjaramillo.cerocorrupcion.SrvUtil</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SrvUtil</servlet-name>
+		<url-pattern>/SrvUtil</url-pattern>
+		<url-pattern>/SrvUtil/*</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+</web-app>
