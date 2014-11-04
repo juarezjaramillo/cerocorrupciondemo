@@ -7,7 +7,7 @@ Prototipo para el reto [Denuncia la Corrupción](http://retos.datos.gob.mx/organ
 - [Portal del Administrador de Denuncias](http://cerocorrupcionmx.appspot.com/). (usuario = LUIS, contraseña = 10161984)
 
 Se libera el código de este repositorio bajo los términos de Apache License 2.0.
-Puede revisarla en el archivo LICENSE de este respositorio
+Puede revisarla en el archivo LICENSE de este repositorio
 
 Se utilizaron diversas librerías para generar este prototipo, el crédito de las mismas es para sus autores  
 * [Apache Cordova - Android](https://github.com/apache/cordova-android) y plugins [Camera](https://github.com/apache/cordova-plugin-camera), [Console](https://github.com/apache/cordova-plugin-console), [Network Information](https://github.com/apache/cordova-plugin-network-information), [Geolocation](https://github.com/apache/cordova-plugin-globalization), [Media](https://github.com/apache/cordova-plugin-media), [File](https://github.com/apache/cordova-plugin-file), [File Transfer](https://github.com/apache/cordova-plugin-file-transfer), [Dialogs](https://github.com/apache/cordova-plugin-dialogs), [Vibration](https://github.com/apache/cordova-plugin-vibration) y [PushPlugin](https://github.com/phonegap-build/PushPlugin), [device-feedback](https://github.com/VVelda/device-feedback)
