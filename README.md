@@ -22,6 +22,7 @@ Se utilizaron diversas librerías para generar este prototipo, el crédito de la
 Manuales de Usuario
 ========================
 Vea el [Manual de usuario de la App](https://docs.google.com/document/d/1e-3QVeCstDynblnpjaGbYpskzRT-GPKagbAzndlp4Pk/edit?usp=sharing)
+Vea el [Video del Prototipo](http://youtu.be/mDW3tWNVsyQ) en funcionamiento
 
 Notas sobre el prototipo
 ====================
