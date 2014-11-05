@@ -38,5 +38,8 @@ Sobre la App
 * Debido a que se entrega un video y un manual de uso con este prototipo, el apartado 'Tutorial' no fue agregado pues se consideró redundante.  
 * El prototipo cuenta con información directamente integrada en el código (hardcoding) para los apartados 'Oficinas' y 'Que Hacer', por lo que puede no reflejar información real y/o actual. Ésto cambiará en la versión final con un mejor manejo de la información y/o actualización de la misma.  
 
+Sobre la lista de servidores públicos
+* De la lista del personal obtenida del POT (170 mil registros aprox) se dejaron sólamente 3000 en la base de datos para el prototipo.
+
 Sobre el Portal del Administrador de Denuncias
 * El portal está publicado en Google App Engine, los costos que se deriven de ello durante la etapa de prototipos y, en caso de resultar ganadores, durante el desarrollo y pruebas, los cubrirá el equipo participante. A partir de la entrega del producto y transferencia de tecnología a la dependencia, ésta deberá cubrir estos gastos para mantener la aplicación funcionando.
